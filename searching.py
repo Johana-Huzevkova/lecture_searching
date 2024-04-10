@@ -34,13 +34,19 @@ def linear_search(unordered_numbers, searched_number):
 
 
 def pattern_search(dna_sequence, searched_pattern):
-    pattern_index = set()
-    for idx in range(len(dna_sequence)):
-        sequence = dna_sequence[idx:idx + len(searched_pattern)]
-        if sequence == searched_pattern:
-            pattern_index.add(int(idx + ((len(searched_pattern)) / 2)))
+    sequence_index = set()
+    n = len(dna_sequence)
+    m = len(searched_pattern)
+    for idx in range(n - m):
+        pattern_index = 0
+        while pattern_index < m:
+            if dna_sequence[idx + pattern_index] != searched_pattern[pattern_index]:
+                break
+            pattern_index += 1
+        if pattern_index == m:
+            sequence_index.add(int(idx + (m / 2)))
 
-    return pattern_index
+    return sequence_index
 
 
 def main():
